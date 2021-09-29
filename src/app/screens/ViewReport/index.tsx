@@ -8,7 +8,7 @@ type Props = {
   navigation: any;
 };
 
-const Home = ({navigation}: Props) => {
+const ViewReport = ({navigation}: Props) => {
   const navigateTo = (screen: string) => {
     navigation.navigate(screen);
   };
@@ -22,4 +22,4 @@ const Home = ({navigation}: Props) => {
   );
 };
 
-export default Home;
+export default ViewReport;

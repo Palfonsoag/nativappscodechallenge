@@ -12,7 +12,31 @@ const styles = StyleSheet.create({
   contentContainer: {
     height: screenHeight - 60 - 70,
     width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  image: {
+    marginVertical: 24,
+    alignItems: 'center',
+  },
+  imageSection: {
+    width: '100%',
+    height: '35%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonSection: {
+    width: '100%',
+    height: '10%',
     flexDirection: 'row',
+
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  descriptionSection: {
+    width: '100%',
+    height: '55%',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
