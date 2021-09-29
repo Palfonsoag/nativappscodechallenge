@@ -7,11 +7,15 @@ import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import BorderButton from '../../components/common/BorderButton';
 import Input from '../../components/common/Input';
-import Styles from './styles';
+import Spinner from '../../components/common/Spinner';
 import {Colors} from '../../theme/Colors';
+import {saveReport} from '../../ducks/actions/SetReportAction';
+import Styles from './styles';
 
 type Props = {
   navigation: any;
+  loading: boolean;
+  saveReport: (description: string, uri: any) => void;
 };
 
 interface Action {
@@ -43,7 +47,7 @@ const actions: Action[] = [
   },
 ];
 
-const StartReport = ({navigation}: Props) => {
+const StartReport = ({navigation, loading, saveReport}: Props) => {
   const [response, setResponse] = useState<any>(null);
   const [description, setDescription] = useState<string>('');
 
@@ -61,6 +65,7 @@ const StartReport = ({navigation}: Props) => {
 
   return (
     <View style={Styles.screenContainer}>
+      {loading && <Spinner />}
       <Header navigation={navigation} screenTitle="Set Report" backOption />
       <View style={Styles.contentContainer}>
         <View style={Styles.imageSection}>
@@ -98,7 +103,7 @@ const StartReport = ({navigation}: Props) => {
           />
           <BorderButton
             label={'Create Report'}
-            onPress={() => {}}
+            onPress={() => saveReport(description, response?.assets[0].uri)}
             large
             labelColor={Colors.blue1}
             borderColor={Colors.blue1}
@@ -111,7 +116,7 @@ const StartReport = ({navigation}: Props) => {
 };
 
 const mapStateTopProps = (state: globalStateType) => {
-  return {};
+  return {loading: state.setReport.loading};
 };
 
-export default connect(mapStateTopProps, {})(StartReport);
+export default connect(mapStateTopProps, {saveReport})(StartReport);
