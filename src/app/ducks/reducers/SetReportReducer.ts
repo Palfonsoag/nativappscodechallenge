@@ -14,6 +14,8 @@ export default (state = INITIAL_STATE, action: any) => {
       return {...state, loading: true};
     case SET_REPORT_ACTIONS.ACTION_STOP:
       return {...state, loading: false};
+    case SET_REPORT_ACTIONS.SET_SUCCESS:
+      return {...state, success: true};
     case SET_REPORT_ACTIONS.SET_ERROR:
       return {...state, error: action.payload};
     case SET_REPORT_ACTIONS.CLEAN_STATE:

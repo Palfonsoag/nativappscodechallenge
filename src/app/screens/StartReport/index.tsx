@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {View, Image} from 'react-native';
+import {View, Image, Alert} from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import {globalStateType} from '../../ducks/reducers';
 import Header from '../../components/common/Header';
@@ -9,13 +9,19 @@ import BorderButton from '../../components/common/BorderButton';
 import Input from '../../components/common/Input';
 import Spinner from '../../components/common/Spinner';
 import {Colors} from '../../theme/Colors';
-import {saveReport} from '../../ducks/actions/SetReportAction';
+import {
+  saveReport,
+  cleanReportState,
+} from '../../ducks/actions/SetReportAction';
 import Styles from './styles';
 
 type Props = {
   navigation: any;
   loading: boolean;
+  error: string;
+  success: boolean;
   saveReport: (description: string, uri: any) => void;
+  cleanReportState: () => void;
 };
 
 interface Action {
@@ -47,9 +53,55 @@ const actions: Action[] = [
   },
 ];
 
-const StartReport = ({navigation, loading, saveReport}: Props) => {
+const StartReport = ({
+  navigation,
+  loading,
+  saveReport,
+  error,
+  success,
+  cleanReportState,
+}: Props) => {
   const [response, setResponse] = useState<any>(null);
   const [description, setDescription] = useState<string>('');
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert(
+        'Error',
+        error,
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              setResponse(null);
+              setDescription('');
+              cleanReportState();
+            },
+          },
+        ],
+        {cancelable: false},
+      );
+    }
+    if (success) {
+      Alert.alert(
+        'Congrats',
+        'Report saved!',
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              cleanReportState();
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Home'}],
+              });
+            },
+          },
+        ],
+        {cancelable: false},
+      );
+    }
+  }, [success, error]);
 
   const onButtonPress = React.useCallback((type, options) => {
     if (type === 'capture') {
@@ -116,7 +168,13 @@ const StartReport = ({navigation, loading, saveReport}: Props) => {
 };
 
 const mapStateTopProps = (state: globalStateType) => {
-  return {loading: state.setReport.loading};
+  return {
+    loading: state.setReport.loading,
+    error: state.setReport.error,
+    success: state.setReport.success,
+  };
 };
 
-export default connect(mapStateTopProps, {saveReport})(StartReport);
+export default connect(mapStateTopProps, {saveReport, cleanReportState})(
+  StartReport,
+);

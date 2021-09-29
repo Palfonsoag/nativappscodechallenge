@@ -11,6 +11,7 @@ export const SET_REPORT_ACTIONS = {
   ACTION_START: base + 'ACTION_START',
   ACTION_STOP: base + 'ACTION_STOP',
   SET_ERROR: base + 'SET_ERROR',
+  SET_SUCCESS: base + 'SET_SUCCESS',
 };
 
 export const saveReport = (description: string, uri: any) => {
@@ -32,10 +33,15 @@ export const saveReport = (description: string, uri: any) => {
       const jsonValue = JSON.stringify([...reportArray, newReport]);
       await AsyncStorage.setItem(REPORTS, jsonValue);
       dispatch({type: SET_REPORT_ACTIONS.ACTION_STOP});
+      dispatch({type: SET_REPORT_ACTIONS.SET_SUCCESS});
     } catch (e) {
       // saving error
       dispatch({type: SET_REPORT_ACTIONS.SET_ERROR, payload: e});
       dispatch({type: SET_REPORT_ACTIONS.ACTION_STOP});
     }
   };
+};
+
+export const cleanReportState = () => {
+  return {type: SET_REPORT_ACTIONS.CLEAN_STATE};
 };
