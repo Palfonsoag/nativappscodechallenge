@@ -9,8 +9,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     justifyContent: 'space-between',
   },
+  titleContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    height: 200,
+  },
+  title: {
+    fontSize: 30,
+  },
   contentContainer: {
-    height: screenHeight - 60 - 70,
+    height: screenHeight - 330,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',

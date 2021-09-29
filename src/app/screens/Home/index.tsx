@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import BorderButton from '../../components/common/BorderButton';
@@ -18,6 +18,9 @@ const Home = ({navigation}: Props) => {
   return (
     <View style={Styles.screenContainer}>
       <Header navigation={navigation} screenTitle="Home" />
+      <View style={Styles.titleContainer}>
+        <Text style={Styles.title}>Road Report</Text>
+      </View>
       <View style={Styles.contentContainer}>
         <BorderButton
           label="Start Report"
