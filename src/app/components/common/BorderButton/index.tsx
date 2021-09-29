@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text, Image, View, ImageProps} from 'react-native';
-import Styles from './styles';
 import {Colors} from '../../../theme/Colors';
+import Styles from './styles';
 
 type Props = {
   label: string;
@@ -13,7 +13,6 @@ type Props = {
   short?: boolean;
   height?: number;
   icon?: ImageProps;
-  disabled?: boolean;
 };
 
 const BorderButton = ({
@@ -26,14 +25,11 @@ const BorderButton = ({
   short,
   height = 50,
   icon,
-  disabled,
 }: Props) => {
   return (
     <TouchableOpacity
-      disabled={disabled}
       style={[
         Styles.button,
-        disabled && {borderColor: Colors.greenDisabled},
         {borderColor},
         large && Styles.large,
         short && Styles.short,
@@ -46,7 +42,6 @@ const BorderButton = ({
           style={[
             Styles.text,
             short && {fontSize: 10, lineHeight: 13},
-            disabled && {color: Colors.greenDisabled},
             {color: labelColor, fontWeight: weight},
           ]}>
           {label}

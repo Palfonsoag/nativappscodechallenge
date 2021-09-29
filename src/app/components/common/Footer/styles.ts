@@ -8,9 +8,7 @@ const styles = StyleSheet.create({
     height: 70,
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderTopColor: Colors.gray1,
-    borderTopWidth: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.blueFacebook,
   },
   tab: {
     justifyContent: 'center',

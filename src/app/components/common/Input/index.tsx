@@ -29,7 +29,6 @@ type Props = {
   placeholderTextColor?: string;
   search?: boolean;
   message?: boolean;
-  autoComplete?: boolean;
 };
 
 const Input = ({
@@ -53,7 +52,6 @@ const Input = ({
   onPressActionIcon,
   search,
   message,
-  autoComplete,
 }: Props) => {
   return (
     <View
@@ -68,7 +66,6 @@ const Input = ({
         <TextInput
           secureTextEntry={secureTextEntry}
           editable={editable}
-          autoCompleteType={autoComplete && 'email'}
           placeholder={placeholder}
           autoCorrect={false}
           value={value}
@@ -90,8 +87,7 @@ const Input = ({
       </View>
       <TouchableOpacity
         style={Styles.actionSection}
-        onPress={onPressActionIcon}
-      >
+        onPress={onPressActionIcon}>
         {actionIcon}
       </TouchableOpacity>
     </View>

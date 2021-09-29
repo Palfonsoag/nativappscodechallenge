@@ -9,6 +9,7 @@ export const Colors = {
   greenDisabled: '#A8DECA',
   blue1: '#4989FF',
   blue2: '#00AAE4',
+  lightBlue: '#ADD8E6',
   blueOpacity: 'rgba(73, 137, 255, 0.13)',
   blueFacebook: '#1877F2',
   gray1: '#D5D5D5',

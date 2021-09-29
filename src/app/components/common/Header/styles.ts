@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../../theme/Colors';
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -7,7 +8,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: Colors.blueFacebook,
   },
   logoContainer: {
     width: '90%',
@@ -18,11 +19,7 @@ const styles = StyleSheet.create({
     width: '10%',
     paddingLeft: 20,
   },
-  logo: {
-    resizeMode: 'contain',
-    height: 40,
-    width: 140,
-  },
+
   back: {
     resizeMode: 'contain',
     width: 25,
@@ -32,6 +29,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     fontSize: 20,
     fontWeight: '400',
+    color: Colors.white,
   },
 });
 
